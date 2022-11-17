@@ -5,11 +5,9 @@
 #include "./Components.hpp"
 
 class MovementSystem : public UpdateSystem {
-  private:
-    int counter = 0;
+  
 
   public:
-    MovementSystem(int c) : counter(c) {}
 
     void run(double dT) override {
       const auto view = scene->mRegistry.view<TransformComponent, MovementComponent>();
@@ -42,8 +40,40 @@ class MovementSystem : public UpdateSystem {
 
         std::cout << "x: " << t.position.x << std::endl;
         std::cout << "y: " << t.position.y << std::endl;
-        std::cout << "c: " << counter++ << std::endl;
       }
+    }
+};
+
+class KnockDownPointSystem : public InputSystem {
+  private:
+    int ko1 = 0;
+    int ko2 = 0;
+
+  public:
+
+    void run(SDL_Event event) override {
+        if (event.type == SDL_KEYDOWN)
+      {
+        switch (event.key.keysym.sym) {
+          case SDLK_o:
+            point1();
+            break;
+          case SDLK_p:
+            point2();
+            break;
+        }
+      }  
+    }
+
+    void point1 (){
+      ko1 ++;
+      std::cout << "POINTS" << std::endl;
+      std::cout << ko1 << " - " << ko2 << std::endl;
+    }
+    void point2 (){
+      ko2 ++;
+      std::cout << "POINTS" << std::endl;
+      std::cout << ko1 << " - " << ko2 << std::endl;
     }
 };
 
@@ -64,20 +94,5 @@ class CubeSystem : public RenderSystem {
         SDL_Rect rect = { x, y, w, h };    
         SDL_RenderFillRect(renderer, &rect);
       }
-    }
-};
-
-class HelloSystem : public SetupSystem {
-  public:
-    HelloSystem() {
-      std::cout << "Hello System Constructor" << std::endl;
-    }
-
-    ~HelloSystem() {
-      std::cout << "Hello System Destructor" << std::endl;
-    }
-
-    void run() override {
-      std::cout << "Hello System!" << std::endl;
     }
 };

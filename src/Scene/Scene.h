@@ -4,7 +4,7 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 #include <string>
-#include <entt/entt.hpp>
+#include "../entt/entt.hpp"
 
 class Entity;
 class SetupSystem;
@@ -24,6 +24,7 @@ class Scene {
     ~Scene();
 
     entt::registry mRegistry;
+    Entity* player;
 
     Entity createEntity(
       const std::string& name = "NO NAME",
@@ -37,6 +38,7 @@ class Scene {
 
     void setup();
     void update(double dT);
+    void input(SDL_Event event);
     void render(SDL_Renderer* renderer);
 };
 

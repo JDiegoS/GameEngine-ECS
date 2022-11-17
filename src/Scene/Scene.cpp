@@ -55,7 +55,6 @@ void Scene::addRenderSystem(RenderSystem* s)
 
 void Scene::setup()
 {
-  std::cout << "Scene Setup" << std::endl;
   
   for (SetupSystem* sys: setupSystems)
   {
@@ -65,7 +64,6 @@ void Scene::setup()
 
 void Scene::update(double dT)
 {
-  std::cout << "Scene Update" << std::endl;
   
   for (UpdateSystem* sys: updateSystems)
   {
@@ -75,10 +73,17 @@ void Scene::update(double dT)
 
 void Scene::render(SDL_Renderer* renderer)
 {
-  std::cout << "Scene Render" << std::endl;
   
   for (RenderSystem* sys: renderSystems)
   {
     sys->run(renderer);
+  }
+}
+
+void Scene::input(SDL_Event event)
+{  
+  for (InputSystem* sys: inputSystems)
+  {
+    sys->run(event);
   }
 }

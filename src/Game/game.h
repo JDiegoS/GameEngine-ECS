@@ -23,7 +23,6 @@ class Game {
         void frameEnd();
     private:
         bool isRunning;
-        bool winnerTop;
         SDL_Window *window;
         SDL_Renderer *renderer;
         int counter;
@@ -34,7 +33,7 @@ class Game {
         Uint32 frameStartTimeStamp;
         Uint32 frameEndTimeStamp;
         float frameDuration;
-        double dT;
+        float dT;
         
 };
 
