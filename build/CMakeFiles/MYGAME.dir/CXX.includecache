@@ -52,24 +52,6 @@ iostream
 Scene.h
 /mnt/c/Users/jdieg/Documents/UVG/A5S2/GameEngine/GameEngine-ECS/src/Scene/Scene.h
 
-/mnt/c/Users/jdieg/Documents/UVG/A5S2/GameEngine/GameEngine-ECS/src/Scene/Scene.cpp
-iostream
--
-string
--
-glm/glm.hpp
--
-SDL2/SDL.h
--
-Scene.h
-/mnt/c/Users/jdieg/Documents/UVG/A5S2/GameEngine/GameEngine-ECS/src/Scene/Scene.h
-Entities.hpp
-/mnt/c/Users/jdieg/Documents/UVG/A5S2/GameEngine/GameEngine-ECS/src/Scene/Entities.hpp
-Components.hpp
-/mnt/c/Users/jdieg/Documents/UVG/A5S2/GameEngine/GameEngine-ECS/src/Scene/Components.hpp
-System.h
-/mnt/c/Users/jdieg/Documents/UVG/A5S2/GameEngine/GameEngine-ECS/src/Scene/System.h
-
 /mnt/c/Users/jdieg/Documents/UVG/A5S2/GameEngine/GameEngine-ECS/src/Scene/Scene.h
 SDL2/SDL.h
 -

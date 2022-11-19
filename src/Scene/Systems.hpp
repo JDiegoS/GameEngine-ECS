@@ -5,9 +5,11 @@
 #include "./Components.hpp"
 
 class MovementSystem : public UpdateSystem {
-  
+  private:
+    int counter = 0;
 
   public:
+    MovementSystem(int c) : counter(c) {}
 
     void run(double dT) override {
       const auto view = scene->mRegistry.view<TransformComponent, MovementComponent>();
@@ -15,31 +17,18 @@ class MovementSystem : public UpdateSystem {
         TransformComponent& t = view.get<TransformComponent>(e);
         MovementComponent& m = view.get<MovementComponent>(e);
 
-        if (t.position.x <= 0)
+        if (t.position.x <= 450)
         {
           m.velocity.x *= -1;
         }
 
-        if (t.position.x >= 640)
+        if (t.position.x >= 800)
         {
           m.velocity.x *= -1;
-        }
-
-        if (t.position.y <= 0)
-        {
-          m.velocity.y *= -1;
-        }
-
-        if (t.position.y >= 480)
-        {
-          m.velocity.y *= -1;
         }
 
         t.position.x += m.velocity.x * dT;
-        t.position.y += m.velocity.y * dT;
 
-        std::cout << "x: " << t.position.x << std::endl;
-        std::cout << "y: " << t.position.y << std::endl;
       }
     }
 };
@@ -56,9 +45,11 @@ class KnockDownPointSystem : public InputSystem {
       {
         switch (event.key.keysym.sym) {
           case SDLK_o:
+            // Logica para revisar hizo land el punch
             point1();
             break;
           case SDLK_p:
+            // Logica para revisar si recivio punch
             point2();
             break;
         }
@@ -80,7 +71,7 @@ class KnockDownPointSystem : public InputSystem {
 class CubeSystem : public RenderSystem {
   public:
     void run(SDL_Renderer* renderer) override {
-      SDL_SetRenderDrawColor(renderer, 255, 100, 100, 1);
+      SDL_SetRenderDrawColor(renderer, 255, 0, 0, 1);
 
       const auto view = scene->mRegistry.view<TransformComponent, ColliderComponent>();
       for (const entt::entity e : view) {

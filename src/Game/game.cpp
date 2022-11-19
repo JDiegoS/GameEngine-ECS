@@ -92,9 +92,13 @@ void Game::setup(){
 
     scene = new Scene("Level1");
 
-    Entity player = scene->createEntity();
-    player.addComponent<MovementComponent>(MovementComponent{glm::vec2(50, 50)});
-    player.addComponent<ColliderComponent>(ColliderComponent{glm::vec2(50, 50)});
+    Entity enemy = scene->createEntity("enemy", 500, 300);
+    enemy.addComponent<MovementComponent>(MovementComponent{glm::vec2(200, 200)});
+    enemy.addComponent<ColliderComponent>(ColliderComponent{glm::vec2(50, 50)});
+
+
+    scene->addUpdateSystem(new MovementSystem(3000));
+    scene->addRenderSystem(new CubeSystem());
 
     scene->addInputSystem(new KnockDownPointSystem());
 
